@@ -2,7 +2,7 @@ var fs = require('fs');
 var _ = require('underscore');
 
 var readCSV = function(path) {
-  return fs.readFileSync(path + '.csv', 'utf-8')
+  return fs.readFileSync(path, 'utf-8')
     .split('\n')
     .map(function(line) { return line.split(','); });
 };
@@ -16,7 +16,7 @@ var writeCSV = function(path, data, header) {
 
   lines = lines.concat(data);
 
-  fs.writeFileSync(path + '.csv', lines.join('\n'));
+  fs.writeFileSync(path, lines.join('\n'));
 };
 
 var writeJSON = function(path, obj) {
@@ -28,11 +28,11 @@ var writeJSON = function(path, obj) {
     obj = obj.map(function(item) { return item.toJSON(); });
   }
 
-  fs.writeFileSync(path + '.json', JSON.stringify(obj));
+  fs.writeFileSync(path, JSON.stringify(obj));
 };
 
 var readJSON = function(path) {
-  return JSON.parse(fs.readFileSync(path + '.json', 'utf-8'));
+  return JSON.parse(fs.readFileSync(path, 'utf-8'));
 };
 
 var fatal = function(message) {
