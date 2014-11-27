@@ -1,6 +1,6 @@
 {
   "name": "gutils",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Functions I end up writing for every Node.js project",
   "main": "main.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "Giles Lavelle",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^0.5.1",
     "underscore": "^1.7.0"
   }
 }

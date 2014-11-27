@@ -1,5 +1,16 @@
 var fs = require('fs');
 var _ = require('underscore');
+var chalk = require('chalk');
+
+var fatal = function(message) {
+  console.error(chalk.red(message.toString()));
+  process.exit(1);
+};
+
+var pretty = function(object, indent) {
+  indent = indent || 2;
+  return JSON.stringify(object, null, indent);
+};
 
 var readCSV = function(path) {
   return fs.readFileSync(path, 'utf-8')
@@ -19,7 +30,7 @@ var writeCSV = function(path, data, header) {
   fs.writeFileSync(path, lines.join('\n'));
 };
 
-var writeJSON = function(path, obj) {
+var writeJSON = function(path, obj, indent) {
   if (_.isFunction(obj.toJSON)) {
     obj = obj.toJSON();
   }
@@ -28,21 +39,13 @@ var writeJSON = function(path, obj) {
     obj = obj.map(function(item) { return item.toJSON(); });
   }
 
-  fs.writeFileSync(path, JSON.stringify(obj));
+  var str = indent ? pretty(obj, indent) : JSON.stringify(obj);
+
+  fs.writeFileSync(path, str);
 };
 
 var readJSON = function(path) {
   return JSON.parse(fs.readFileSync(path, 'utf-8'));
-};
-
-var fatal = function(message) {
-  console.error(message.toString().red);
-  process.exit(1);
-};
-
-var pretty = function(object, indent) {
-  indent = indent || 2;
-  JSON.stringify(object, null, indent);
 };
 
 module.exports = {
