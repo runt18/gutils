@@ -7,6 +7,10 @@ var fatal = function(message) {
   process.exit(1);
 };
 
+var success = function(message) {
+  console.log(chalk.green(message.toString()));
+};
+
 var pretty = function(object, indent) {
   indent = indent || 2;
   return JSON.stringify(object, null, indent);
@@ -54,5 +58,6 @@ module.exports = {
   readCSV: readCSV,
   writeCSV: writeCSV,
   fatal: fatal,
+  success: success,
   pretty: pretty
 };
