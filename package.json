@@ -1,6 +1,6 @@
 {
   "name": "gutils",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Functions I end up writing for every Node.js project",
   "main": "main.js",
   "scripts": {

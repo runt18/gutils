@@ -16,8 +16,12 @@ var pretty = function(object, indent) {
   return JSON.stringify(object, null, indent);
 };
 
+var readText = function(path) {
+  return fs.readFileSync(path, 'utf-8');
+};
+
 var readCSV = function(path) {
-  return fs.readFileSync(path, 'utf-8')
+  return readText(path)
     .split('\n')
     .map(function(line) { return line.split(','); });
 };
@@ -49,10 +53,11 @@ var writeJSON = function(path, obj, indent) {
 };
 
 var readJSON = function(path) {
-  return JSON.parse(fs.readFileSync(path, 'utf-8'));
+  return JSON.parse(readText(path));
 };
 
 module.exports = {
+  readText: readText,
   writeJSON: writeJSON,
   readJSON: readJSON,
   readCSV: readCSV,
